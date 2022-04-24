@@ -8,4 +8,6 @@ The validation of the CPF is made inside CpfValidator class
 
 All the methods to add or delete observers from the observable list are inside UTILS -> OBSERVERUTILS
 
+If you run the project all the observers will be added to the observable list and printed. Type "sair" to get out the while loop that asks to type the CPFs.
+
 I used java 11 for this project. 
