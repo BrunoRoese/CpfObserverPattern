@@ -2,7 +2,6 @@ package CpfObservable;
 
 import CpfObservers.CpfObserver;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class CpfObservable {
@@ -24,7 +23,7 @@ public class CpfObservable {
         }
     }
 
-    public void validateAllCpfAtObservers() throws IOException {
+    public void validateAllCpfAtObservers() {
         validators.forEach(CpfObserver::validateAllCpf);
     }
 
