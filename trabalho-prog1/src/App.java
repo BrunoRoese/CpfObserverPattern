@@ -1,7 +1,6 @@
 import CpfObservable.CpfObservable;
 import CpfObservers.CpfObserver;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -9,25 +8,29 @@ import java.util.Scanner;
 import static Utils.ObserverUtils.*;
 
 public class App {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         CpfObservable observable = new CpfObservable();
         ArrayList<CpfObserver> listOfCpfObservers = createObserversList();
-        Scanner scanner = new Scanner(System.in);
 
         addAllObservers(observable, listOfCpfObservers);
-        deleteSpecificObserver(observable, listOfCpfObservers.remove(0));
 
-        if(!observable.getValidators().isEmpty()) {
+        askForCpfsIfSairIsNotTyped(observable);
+
+        observable.validateAllCpfAtObservers();
+    }
+
+    private static void askForCpfsIfSairIsNotTyped(CpfObservable observable) {
+        Scanner scanner = new Scanner(System.in);
+
+        if (!observable.getValidators().isEmpty()) {
             String cpf = "";
-            while(!Objects.equals(cpf, "sair")) {
-                System.out.println("Enter a cpf: ");
+            while (!Objects.equals(cpf, "sair")) {
+                System.out.println("Enter a cpf (type \"sair\" if you want to get out): ");
                 cpf = scanner.nextLine();
                 observable.setCpf(cpf);
             }
         } else {
             throw new RuntimeException("There are no observers");
         }
-
-        observable.validateAllCpfAtObservers();
     }
 }

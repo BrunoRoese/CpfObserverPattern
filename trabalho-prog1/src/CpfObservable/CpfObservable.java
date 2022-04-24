@@ -2,7 +2,6 @@ package CpfObservable;
 
 import CpfObservers.CpfObserver;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class CpfObservable {
@@ -19,13 +18,11 @@ public class CpfObservable {
 
     public void setCpf(String cpf) {
         this.cpf.add(cpf);
-        for(CpfObserver validator: this.validators) {
-            validator.update(cpf);
-        }
+        this.validators.forEach(validator -> validator.update(cpf));
     }
 
-    public void validateAllCpfAtObservers() throws IOException {
-        validators.forEach(CpfObserver::validateAllCpf);
+    public void validateAllCpfAtObservers() {
+       this.validators.forEach(CpfObserver::validateAllCpf);
     }
 
     public ArrayList<String> getCpf(){
@@ -33,7 +30,7 @@ public class CpfObservable {
     }
 
     public ArrayList<CpfObserver> getValidators() {
-        return validators;
+        return this.validators;
     }
 
     public void setValidators(ArrayList<CpfObserver> validators) {

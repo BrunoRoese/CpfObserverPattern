@@ -16,9 +16,7 @@ public class CpfObserverToConsole implements CpfObserver {
 
     @Override
     public void validateAllCpf() {
-        for (String cpf : cpfList) {
-            printCpf(cpf);
-        }
+        cpfList.forEach(this::printCpf);
     }
 
     private void printCpf(String cpf) {
