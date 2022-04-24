@@ -18,13 +18,11 @@ public class CpfObservable {
 
     public void setCpf(String cpf) {
         this.cpf.add(cpf);
-        for(CpfObserver validator: this.validators) {
-            validator.update(cpf);
-        }
+        this.validators.forEach(validator -> validator.update(cpf));
     }
 
     public void validateAllCpfAtObservers() {
-        validators.forEach(CpfObserver::validateAllCpf);
+       this.validators.forEach(CpfObserver::validateAllCpf);
     }
 
     public ArrayList<String> getCpf(){
@@ -32,7 +30,7 @@ public class CpfObservable {
     }
 
     public ArrayList<CpfObserver> getValidators() {
-        return validators;
+        return this.validators;
     }
 
     public void setValidators(ArrayList<CpfObserver> validators) {
